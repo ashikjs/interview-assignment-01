@@ -1,0 +1,40 @@
+/*----------------------------------------------------------------*/
+/*  @ Text rendering & box sizing
+/*----------------------------------------------------------------*/
+
+.break-word {
+  word-break: break-word !important;
+}
+
+.text-truncate {
+  display: block !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+/***  IOS Device Input field top shadow removed ***/
+input {
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+}
+
+/*** text truncate after two line ***/
+.two-line-truncate {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word !important;
+}
+
+.three-line-truncate {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word !important;
+}

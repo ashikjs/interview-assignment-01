@@ -1,0 +1,31 @@
+// -----------------------------------------------------------------------------------------------------
+// @ Body styles and content not selectable.
+// -----------------------------------------------------------------------------------------------------
+
+html {
+  height: 100%;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  @media screen and (max-width: 768px) {
+    overflow-x: hidden;
+  }
+}
+
+body {
+  font-family: "Roboto", "sans-serif";
+  color: #333333;
+  font-size: 14px;
+  font-weight: normal;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: "Metropolis", "sans-serif";
+}
