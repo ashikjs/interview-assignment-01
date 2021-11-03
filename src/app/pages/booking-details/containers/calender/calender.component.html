@@ -1,0 +1,56 @@
+<div class="calendar" id="calendarView">
+  <div class="calendar-navs mb-2">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="year d-inline-block">
+          <span class="month-name">{{ currentMonth?.format('MMMM') }}</span>
+          <span>{{ currentMonth?.format('YYYY') }}</span>
+        </div>
+        <div class="next-prev-btns pl-2 d-inline-block">
+          <button (click)="prevMonth()" [disabled]="checkCurrentMonth()" class="btn prev">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 414.496 414.496" xml:space="preserve">
+                <polygon fill="#000000"
+                         points="118.126,0 89.796,28.238 268.223,207.248 89.796,386.258 118.126,414.496 324.7,207.248 "/>
+            </svg>
+          </button>
+          <button (click)="nextMonth()" [disabled]="checkNextMonthAvailableDate()" class="btn next">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 414.496 414.496" xml:space="preserve">
+                <polygon fill="#000000"
+                         points="118.126,0 89.796,28.238 268.223,207.248 89.796,386.258 118.126,414.496 324.7,207.248 "/>
+            </svg>          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="month-grid">
+    <div class="day-names">
+      <div *ngFor="let name of dayNames" class="day-name p9">
+        {{ name }}
+      </div>
+    </div>
+    <div class="weeks">
+      <div *ngFor="let week of weeks" class="week">
+        <ng-container *ngFor="let day of week">
+          <div *ngIf="!isSelectedMonth(day?.mDate)" class="week-date disabled">
+            <span class="date-text"></span>
+          </div>
+          <div
+            *ngIf="(!day?.active || day?.disable) && isSelectedMonth(day?.mDate)"
+            [ngClass]="{ today: day?.today }"
+            class="week-date disabled">
+            <span class="date-text">{{ day?.mDate?.date() }}</span>
+          </div>
+          <!-- <pre *ngIf="day.selected">{{ day | json}}</pre> -->
+          <div
+            (click)="onSelectDate(day, $event)"
+            *ngIf="!day?.disable && day?.active && isSelectedMonth(day?.mDate)"
+            [ngClass]="{ today: day?.today, selected: day?.selected, active: day?.active }"
+            class="week-date enabled">
+            <span class="date-text">{{ day?.mDate?.date() }}</span>
+            <!--<span class="d-block today-text " *ngIf="day.today">{{ '*' }}</span>-->
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>

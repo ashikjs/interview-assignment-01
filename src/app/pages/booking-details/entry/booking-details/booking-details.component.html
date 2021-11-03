@@ -1,0 +1,23 @@
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <app-selected-doctor-card></app-selected-doctor-card>
+      </div>
+    </div>
+    <main>
+      <div class="row">
+        <div class="col-6">
+          <app-calender
+            (selectADate)="selectADate($event)"
+            [activeDates]="availableDatesObject"
+          ></app-calender>
+        </div>
+        <div class="col-6">
+          <p *ngIf="!availableTimeRange" class="time-list-text">Please select a date to see available times.</p>
+        </div>
+      </div>
+    </main>
+
+  </div>
+</section>
