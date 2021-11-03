@@ -1,0 +1,83 @@
+.doctor-card {
+  background-color: #ffffff;
+  box-shadow: 0 1px 6px 0 rgb(203 203 203 / 15%);
+  border: 1px solid #f1f1f1;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 6px;
+
+  .doctor-img {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    border-radius: 6px;
+
+    img {
+      width: 100%;
+      transition: all 0.5s;
+      transform: scale(1);
+      display: block;
+    }
+
+    &:hover img {
+      -webkit-transform: scale(1.17);
+      -moz-transform: scale(1.17);
+      transform: scale(1.17);
+    }
+  }
+
+  .doctor-details {
+    padding-top: 15px;
+
+    h3.name {
+      margin: 0;
+    }
+
+    p.speciality {
+      margin: 5px 0;
+      font-size: 12px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        padding-top: 5px;
+        font-size: 12px;
+        align-items: center;
+        display: flex;
+        color: #111111;
+
+        .icon {
+          width: 26px;
+          display: inline-block;
+
+          img {
+            max-width: 16px;
+            width: 100%;
+            opacity: 0.5;
+          }
+
+        }
+
+      }
+    }
+
+    button.book-btn {
+      margin-top: 16px;
+      width: 100%;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #2dbdb6;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      color: #ffffff;
+      border-radius: 3px;
+    }
+  }
+}
