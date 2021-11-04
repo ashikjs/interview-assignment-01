@@ -8,6 +8,7 @@ import { AppTimeCardsComponent } from './containers/app-time-cards/app-time-card
 import { ReactiveFormsModule } from "@angular/forms";
 import { BookingInfoFormComponent } from './containers/booking-info-form/booking-info-form.component';
 import { BookingSuccessMessageComponent } from './components/booking-success-message/booking-success-message.component';
+import { LoadMoreModule } from "@shared/components/loading/load-more.module";
 
 
 @NgModule({
@@ -19,15 +20,16 @@ import { BookingSuccessMessageComponent } from './components/booking-success-mes
         BookingInfoFormComponent,
         BookingSuccessMessageComponent
     ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild([
-      {
-        path: '',
-        component: BookingDetailsComponent
-      }
-    ]),
-    ReactiveFormsModule,
-  ]
+    imports: [
+        CommonModule,
+        RouterModule.forChild([
+            {
+                path: '',
+                component: BookingDetailsComponent
+            }
+        ]),
+        ReactiveFormsModule,
+        LoadMoreModule,
+    ]
 })
 export class BookingDetailsModule { }

@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import * as moment from "moment";
 import * as _ from "lodash";
 
@@ -9,6 +9,9 @@ import { Doctor } from "@pages/home/models/doctor";
 import { IntervalsObject, IntervalsObjectByDateType } from "@pages/booking-details/models/intervalsObject";
 import { AvailableDateObject } from "@pages/booking-details/models/available-date.object";
 
+// @Service
+import { BookingDetailsService } from "@pages/booking-details/services/booking-details.service";
+
 
 @Component({
   selector: 'app-booking-details',
@@ -17,6 +20,7 @@ import { AvailableDateObject } from "@pages/booking-details/models/available-dat
 })
 export class BookingDetailsComponent implements OnInit {
 
+  isLoading: boolean = false;
   doctor: Doctor | undefined | any;
   availableDatesObject: CalendarDate[] = [];
   availableDates: AvailableDateObject[] = [];
@@ -24,33 +28,37 @@ export class BookingDetailsComponent implements OnInit {
   maxBookingDate: number = 120;
   availableTimeRange: IntervalsObject | undefined;
   selectedAppointmentDateTime: IntervalsObjectByDateType | undefined;
-
   bookingAppointmentData: any;
 
   @ViewChild('userBookingInfoRef')
   userBookingInfoRef: ElementRef | undefined;
 
-  constructor(private router: Router) {
+  constructor(private router: Router,
+              private route: ActivatedRoute,
+              private _bookingDetailsService: BookingDetailsService) {
     this.doctor = this.router.getCurrentNavigation()?.extras.state;
+    const doctorId = Number(this.route.snapshot.paramMap.get('id'));
+
     if (!this.doctor) {
-      this.doctor = {
-        id: '2',
-        name: "Dr. Mary Ellis",
-        org: "ABC Hospital",
-        speciality: "BDS, MDS - Oral Maxillofacial Surgery",
-        availabilities: {
-          sat: "06:00 PM - 09:00 PM",
-          sun: "10:00 AM - 06:00 PM",
-          wed: "06:00 PM - 09:00 PM"
+      this.isLoading = true;
+      this._bookingDetailsService
+        .getDoctorDetails(doctorId).subscribe(
+        (doctor: Doctor) => {
+          this.doctor = doctor;
+          this.isLoading = false;
+          this.initCalendar();
         },
-        visitDurationInMin: 15
-      }
+        (error) => {
+          this.isLoading = false;
+          console.log(error);
+        });
     }
   }
 
   ngOnInit(): void {
-    this.availableDates = this.generateAvailableDates(this.doctor?.availabilities)
-    this.availableDatesObject = this.formatCalendarDate(this.availableDates);
+    if (this.doctor) {
+      this.initCalendar();
+    }
   }
 
   //**************************************//
@@ -90,6 +98,11 @@ export class BookingDetailsComponent implements OnInit {
   //**************************************//
   /*** private Method                  ***/
   //*************************************//
+
+  private initCalendar() {
+    this.availableDates = this.generateAvailableDates(this.doctor?.availabilities)
+    this.availableDatesObject = this.formatCalendarDate(this.availableDates);
+  }
 
   private formatCalendarDate(dates: AvailableDateObject[]): CalendarDate[] {
     return dates?.map(date => {

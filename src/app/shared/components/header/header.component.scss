@@ -1,9 +1,15 @@
 header {
   nav {
-    background: radial-gradient(circle at bottom left,#084663 0%,#2dbdb6 100%);
+    background: radial-gradient(circle at bottom left, #084663 0%, #2dbdb6 100%);
     padding: 10px 0;
-    a img {
-      height: 35px;
+
+    a {
+      display: inline-block;
+      cursor: pointer;
+
+      img {
+        height: 35px;
+      }
     }
   }
 }

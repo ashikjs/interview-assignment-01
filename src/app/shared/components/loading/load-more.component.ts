@@ -4,7 +4,7 @@ import {Component} from '@angular/core';
   selector: 'app-load-more',
   template: `
       <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-           style="margin: auto; display: block; shape-rendering: auto;" width="304px" height="304px"
+           style="margin: auto; display: block; shape-rendering: auto;" width="200px" height="200px"
            viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
           <g transform="rotate(0 50 50)">
               <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill="#094b66">

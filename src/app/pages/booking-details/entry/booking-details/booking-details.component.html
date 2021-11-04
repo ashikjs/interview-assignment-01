@@ -1,4 +1,4 @@
-<section>
+<section *ngIf="!isLoading; else loadMore">
   <div class="container">
     <div class="row">
       <div class="col-12">
@@ -22,6 +22,10 @@
     </main>
   </div>
 </section>
+
+<ng-template #loadMore>
+  <app-load-more></app-load-more>
+</ng-template>
 
 <ng-template [ngTemplateOutlet]="userBookingInfo"></ng-template>
 
