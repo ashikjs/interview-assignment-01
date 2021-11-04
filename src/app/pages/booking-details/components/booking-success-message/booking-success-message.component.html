@@ -1,0 +1,16 @@
+<div *ngIf="!!bookingInfo" class="booking-success">
+  <div class="img">
+    <img src="assets/images/icons/calendar.png" alt="calendar">
+  </div>
+  <div class="details">
+    <h2>Hi, {{ bookingInfo?.patient.name }}</h2>
+    <h3>You successfully scheduled a appointment with <br>
+      <b>{{ bookingInfo?.doctor.name }}</b> at
+      <b>{{ bookingInfo?.appointmentStartDateTime | date: 'h:mm a EEEE, d MMM y' }}</b>
+    </h3>
+    <p>If you have any query please, feel free contact us by
+      <a href="tel:0999">0999</a>
+    </p>
+    <a routerLink="/" class="back-btn">Go Home</a>
+  </div>
+</div>

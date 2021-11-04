@@ -6,7 +6,7 @@
   <div class="row">
     <div class="col-12 col-lg-6">
       <div class="form-group">
-        <label for="userName">Name <sup>*</sup></label>
+        <label for="userName">Name<sup>*</sup></label>
         <input id="userName" type="text" class="form-control" placeholder="Your name" formControlName="name" required>
         <div *ngIf="submitted && f.name.errors" class="invalid-feedback d-block">
           <span *ngIf="f.name.errors.required" class="error-text">Name is Required Field.</span>

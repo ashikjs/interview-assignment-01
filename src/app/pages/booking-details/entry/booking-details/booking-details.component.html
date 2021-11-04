@@ -30,12 +30,20 @@
   <div class="c-modal" #userBookingInfoRef>
     <div class="modal-dialog xl-dialog ">
       <div class="user-booking-info-modal">
+        <!-- Appointment booking form -->
         <app-booking-info-form
+          *ngIf="!this.bookingAppointmentData"
           (onClosed)="onClosed()"
           (onSubmitBookingAppointment)="confirmBookingAppointment($event)"
         ></app-booking-info-form>
+        <!-- After booking Success message -->
+        <app-booking-success-message
+          *ngIf="!!this.bookingAppointmentData"
+          [bookingInfo]="this.bookingAppointmentData"
+        ></app-booking-success-message>
       </div>
     </div>
-    <div (click)="onClosed()" class="back-dore"></div>
+    <div *ngIf="!this.bookingAppointmentData" (click)="onClosed()" class="back-dore"></div>
+    <div *ngIf="!!this.bookingAppointmentData" class="back-dore"></div>
   </div>
 </ng-template>

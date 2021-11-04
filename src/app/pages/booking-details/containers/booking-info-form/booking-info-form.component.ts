@@ -41,7 +41,7 @@ export class BookingInfoFormComponent implements OnInit {
     this.submitted = true;
     if (valid) {
       this.onSubmitBookingAppointment.emit(data);
-      this.onCloseModal()
+      // this.onCloseModal()
     }
   }
 

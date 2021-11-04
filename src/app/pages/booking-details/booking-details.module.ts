@@ -7,6 +7,7 @@ import { CalenderComponent } from "@pages/booking-details/containers/calender/ca
 import { AppTimeCardsComponent } from './containers/app-time-cards/app-time-cards.component';
 import { ReactiveFormsModule } from "@angular/forms";
 import { BookingInfoFormComponent } from './containers/booking-info-form/booking-info-form.component';
+import { BookingSuccessMessageComponent } from './components/booking-success-message/booking-success-message.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { BookingInfoFormComponent } from './containers/booking-info-form/booking
         SelectedDoctorCardComponent,
         CalenderComponent,
         AppTimeCardsComponent,
-        BookingInfoFormComponent
+        BookingInfoFormComponent,
+        BookingSuccessMessageComponent
     ],
   imports: [
     CommonModule,

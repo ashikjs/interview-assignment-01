@@ -1,5 +1,8 @@
 @import 'abstracts/variables';
 
-form .title {
-  color: $primary-color;
+form {
+  padding: 0 10px 15px 10px;
+  .title {
+    color: $primary-color;
+  }
 }

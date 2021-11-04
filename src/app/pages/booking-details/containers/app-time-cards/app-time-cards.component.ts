@@ -50,7 +50,6 @@ export class AppTimeCardsComponent implements OnInit {
   }
 
   private generateAvailableTimes(interval: IntervalsObject) {
-    console.log(interval)
     let meetingStartTime = interval.start.valueOf();
     let meetingEndTime = interval.start.valueOf() + this.incrementTime;
     const maximumMeetingTimeTime = interval.end.valueOf();

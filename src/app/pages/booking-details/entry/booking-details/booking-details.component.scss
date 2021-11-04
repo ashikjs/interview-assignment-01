@@ -36,6 +36,11 @@ section {
     }
   }
 }
+.user-booking-info-modal {
+  min-height: 422px;
+  display: flex;
+  align-items: center;
+}
 
 :host {
   .c-modal.show-modal .modal-dialog {

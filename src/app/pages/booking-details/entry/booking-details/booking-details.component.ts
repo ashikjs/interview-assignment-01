@@ -6,7 +6,7 @@ import * as _ from "lodash";
 // Models
 import { CalendarDate } from "@pages/booking-details/models/calendarDate";
 import { Doctor } from "@pages/home/models/doctor";
-import { IntervalsObject } from "@pages/booking-details/models/intervalsObject";
+import { IntervalsObject, IntervalsObjectByDateType } from "@pages/booking-details/models/intervalsObject";
 import { AvailableDateObject } from "@pages/booking-details/models/available-date.object";
 
 
@@ -23,6 +23,9 @@ export class BookingDetailsComponent implements OnInit {
   todayDate: moment.Moment = moment().startOf('day');
   maxBookingDate: number = 120;
   availableTimeRange: IntervalsObject | undefined;
+  selectedAppointmentDateTime: IntervalsObjectByDateType | undefined;
+
+  bookingAppointmentData: any;
 
   @ViewChild('userBookingInfoRef')
   userBookingInfoRef: ElementRef | undefined;
@@ -57,8 +60,8 @@ export class BookingDetailsComponent implements OnInit {
     this.availableTimeRange = data?.intervals;
   }
 
-  public onSelectConfirmTime(interval: any) {
-    console.log(interval);
+  public onSelectConfirmTime(interval: IntervalsObjectByDateType) {
+    this.selectedAppointmentDateTime = interval;
     this.userBookingInfoRef?.nativeElement.classList.add('show-modal');
   }
 
@@ -67,7 +70,21 @@ export class BookingDetailsComponent implements OnInit {
   }
 
   public confirmBookingAppointment(data: any) {
-    console.log(data);
+    this.bookingAppointmentData = {
+      doctor: {
+        name: this.doctor?.name,
+        id: this.doctor?.id
+      },
+      patient: {
+        name: data?.name,
+        phoneNumber: data?.phoneNumber,
+        visitReason: data?.visitReason,
+        gender: data?.gender,
+      },
+      appointmentStartDateTime: this.selectedAppointmentDateTime?.start,
+      appointmentEndDateTime: this.selectedAppointmentDateTime?.end
+    }
+    // console.dir(this.bookingAppointmentData);
   }
 
   //**************************************//

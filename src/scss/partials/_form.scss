@@ -89,6 +89,7 @@ form {
         background-color: $form-color-b;
         cursor: pointer;
         letter-spacing: 1px;
+        border-radius: 5px;
       }
 
       input:checked + label {

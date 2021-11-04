@@ -1,0 +1,49 @@
+:host {
+  width: 100%;
+}
+
+.booking-success {
+  width: 100%;
+  text-align: center;
+
+  .img img {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 120px;
+  }
+
+  .details {
+    padding-top: 20px;
+
+    h2 {
+      color: green;
+    }
+
+    h3 {
+      font-weight: 400;
+      font-size: 20px;
+      margin: 0 auto;
+      line-height: 30px;
+      padding-bottom: 5px;
+    }
+
+    p a {
+      text-decoration: none;
+      color: #2cbbb5;
+    }
+
+    .back-btn {
+      height: 36px;
+      width: 90px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+      background: #2cbbb5;
+      color: #fff;
+      text-transform: uppercase;
+      border-radius: 3px;
+      text-decoration: none;
+    }
+  }
+}
