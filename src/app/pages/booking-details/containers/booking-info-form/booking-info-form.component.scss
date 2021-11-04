@@ -1,0 +1,8 @@
+@import 'abstracts/variables';
+
+form {
+  padding: 0 10px 15px 10px;
+  .title {
+    color: $primary-color;
+  }
+}

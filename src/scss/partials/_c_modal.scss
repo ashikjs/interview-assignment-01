@@ -1,0 +1,67 @@
+.c-modal {
+  visibility: hidden;
+  opacity: 0;
+  display: none;
+  .back-dore {
+    background-color: rgba($color: #000000, $alpha: 0.25);
+    height: 100%;
+    width: 100%;
+    top: 0;
+    position: fixed;
+    z-index: 99991;
+  }
+  .modal-dialog {
+    background-color: #ffff;
+    padding: 16px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 1px 1px rgba($color: #ccc, $alpha: 0.25);
+    position: fixed;
+    top: 100%;
+    width: calc(100% - 30px);
+    max-width: 400px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    z-index: 99992;
+    max-height: calc(100% - 10px);
+    overflow-y: auto;
+
+    &.xl-dialog {
+      max-width: 650px;
+    }
+  }
+  &.show-modal {
+    animation: fadeIn 0.4s;
+    display: block;
+    visibility: visible;
+    opacity: 1;
+    .modal-dialog {
+      animation: slideInUp 0.8s;
+      top: calc(50% - 280px);
+    }
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+  5% {
+    display: block;
+    opacity: 0;
+  }
+  100% {
+    display: block;
+    opacity: 1;
+  }
+}
+
+@keyframes slideInUp {
+  0% {
+    top: 100%;
+  }
+  100% {
+    top: calc(50% - 280px);
+  }
+}

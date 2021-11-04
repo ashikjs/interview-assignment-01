@@ -1,0 +1,21 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass variables.
+// -----------------------------------------------------------------------------
+
+/// Main brand color
+/// @type Color
+$form-color-b: #F2F6F8 !default;
+$placeholder-color: #ccc;
+$white: #ffffff;
+$primary-color: #094b66;
+$secondary-color: #2cbbb5;
+$black-light: #111111;
+$light-blue-grey: #888;
+
+/// Relative or absolute URL where all assets are served from
+/// @type String
+/// @example scss - When using a CDN
+///   $base-url: 'http://cdn.example.com/assets/';
+$assets-dir: 'assets/' !default;
+$images-dir: '/assets/images/' !default;
+$plugins-dir: '/assets/plugins/' !default;

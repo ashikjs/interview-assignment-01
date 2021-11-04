@@ -1,0 +1,40 @@
+.selected-doctor-card {
+  background-color: #ffffff;
+  padding: 15px;
+  display: flex;
+  box-shadow: 0 1px 6px 0 rgb(0 0 0 / 15%);
+  border-radius: 3px;
+
+  .image {
+    flex: 1;
+    max-width: 120px;
+    overflow: hidden;
+    position: relative;
+    img {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      border-radius: 5px;
+    }
+  }
+
+  .details {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    padding-left: 15px;
+
+    h3 {
+      padding: 0;
+      margin: 0;
+    }
+    h5 {
+      padding: 5px 0;
+      margin: 0;
+    }
+    p {
+      padding: 0;
+      margin: 0;
+    }
+  }
+}

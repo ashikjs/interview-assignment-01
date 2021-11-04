@@ -1,0 +1,12 @@
+<div *ngIf="doctor" class="selected-doctor-card">
+  <div class="image">
+    <img [src]="'assets/images/doctors/' + doctor.id + '.jpg'" [alt]="doctor.name">
+  </div>
+  <div class="details">
+    <div>
+      <h3> {{ doctor.name }} </h3>
+      <h5> {{ doctor.speciality }} </h5>
+      <p> {{ doctor.org }} </p>
+    </div>
+  </div>
+</div>

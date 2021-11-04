@@ -1,0 +1,87 @@
+@import 'abstracts/variables';
+
+@media only screen and (max-width: 991px) {
+  .available-times {
+    min-height: auto;
+    margin: 10px 0 30px 0;
+  }
+}
+
+.available-times {
+
+  h5 {
+    margin: 10px 0 20px 0;
+    color: $primary-color;
+  }
+
+  .time-slot {
+    overflow: hidden;
+    position: relative;
+    text-align: left;
+    display: block;
+    padding: 2px;
+
+    button {
+      width: 100%;
+      padding: 10px 0;
+      display: inline-block;
+      text-align: center;
+      font-size: 12px;
+      letter-spacing: 1px;
+      background: #f4f4f4;
+      color: $primary-color;
+      margin-bottom: 5px;
+      border-radius: 0;
+      cursor: pointer;
+      -webkit-transition: all 0.5s;
+      transition: all 0.5s;
+      border: 1px solid #d9d9d9;
+      outline: 0;
+      box-shadow: none;
+
+      &.confirm {
+        width: calc(50% - 4px);
+        transform: translateX(300px);
+        position: absolute;
+      }
+    }
+
+    &.confirmed.active {
+      button {
+        width: 100%;
+
+        &.confirm {
+          transform: translateX(300px);
+        }
+      }
+    }
+  }
+}
+
+.available-times .time-slot {
+  &:hover button.time {
+    border: 1px solid $secondary-color;
+    padding: 10px 0;
+  }
+
+  &.active button {
+    width: calc(50% - 2px);
+    font-weight: 400;
+
+    &.time {
+      border: 1px solid $primary-color;
+      background-color: $primary-color;
+      color: #fff;
+    }
+
+    &.confirm {
+      transform: translateX(0px);
+      margin-left: 4px;
+      display: inline-block;
+      color: #fff;
+      background-color: $secondary-color;
+      border: 1px solid $secondary-color;
+    }
+  }
+
+}

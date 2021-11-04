@@ -1,0 +1,70 @@
+<form [formGroup]="form"
+      (ngSubmit)="onSubmit(form.value, form.valid)"
+      method="post" autocomplete="off">
+  <h2 class="title">Personal Information</h2>
+
+  <div class="row">
+    <div class="col-12 col-lg-6">
+      <div class="form-group">
+        <label for="userName">Name<sup>*</sup></label>
+        <input id="userName" type="text" class="form-control" placeholder="Your name" formControlName="name" required>
+        <div *ngIf="submitted && f.name.errors" class="invalid-feedback d-block">
+          <span *ngIf="f.name.errors.required" class="error-text">Name is Required Field.</span>
+          <span *ngIf="f.name.errors.minlength" class="error-text">At least 3 characters Required.</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-lg-6">
+      <div class="form-group">
+        <label for="phoneNumber">Phone Number<sup>*</sup></label>
+        <input type="text"
+               id="phoneNumber"
+               class="form-control"
+               placeholder="Your Phone Number"
+               formControlName="phoneNumber"
+               required>
+
+        <div *ngIf="submitted && f.phoneNumber.errors" class="invalid-feedback d-block">
+          <span *ngIf="f.phoneNumber.errors.required" class="error-text">Email is Required Field. </span>
+          <span *ngIf="f.phoneNumber.errors.minlength || f.phoneNumber.errors.maxlength" class="error-text">Phone Number Should be 11 digit.</span>
+          <span
+            *ngIf="f.phoneNumber.errors.pattern && !(f.phoneNumber.errors.minlength || f.phoneNumber.errors.maxlength)"
+            class="error-text">Invalid Operator Number.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-lg-6">
+      <div class="form-group">
+        <label>Gender <small>(optional)</small></label>
+        <ul class="radioBoxes">
+          <li>
+            <input type="radio" value="mail" id="maleUser" formControlName="gender"/>
+            <label for="maleUser"> Male </label>
+          </li>
+          <li>
+            <input type="radio" value="female" id="femaleUser" formControlName="gender"/>
+            <label for="femaleUser"> Female </label>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="form-group">
+        <label for="visitReason">Visit Reason<sup>*</sup></label>
+        <textarea type="text" id="visitReason" rows="5" class="form-control"
+                  placeholder="Please describe in details appointment reason."
+                  formControlName="visitReason"
+                  autocomplete="false" required> </textarea>
+        <div *ngIf="submitted && f.visitReason.errors" class="invalid-feedback d-block">
+          <span *ngIf="f.visitReason.errors.required" class="error-text">Password is Required Field.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <button type="button" (click)="onCloseModal()" class="cancel-btn">Cancel</button>
+      <button type="submit" class="submit-btn" >Confirm Book</button>
+    </div>
+  </div>
+</form>

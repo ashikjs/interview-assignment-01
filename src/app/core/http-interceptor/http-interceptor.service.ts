@@ -1,26 +1,16 @@
-import {
-  HttpEvent,
-  HttpRequest,
-  HttpHandler,
-  HttpInterceptor,
-  HttpErrorResponse,
-  HttpHeaders,
-} from '@angular/common/http';
-import { EMPTY, Observable, Subscription, throwError } from 'rxjs';
-import { catchError, switchMap } from 'rxjs/operators';
-import { Injectable, Inject } from '@angular/core';
-
+import { HttpErrorResponse, HttpHandler, HttpInterceptor, HttpRequest, } from '@angular/common/http';
+import { EMPTY, Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
+
 export class HttpInterceptorService implements HttpInterceptor {
 
-  constructor(
-    private _router: Router,
-    @Inject('config') private config: any
-  ) {
+  constructor(private _router: Router) {
   }
 
   public intercept(

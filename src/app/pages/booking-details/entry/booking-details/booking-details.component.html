@@ -1,0 +1,53 @@
+<section *ngIf="!isLoading || !!doctor; else loadMore">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <app-selected-doctor-card [doctor]="doctor"></app-selected-doctor-card>
+      </div>
+    </div>
+    <main>
+      <div class="calender-wrap">
+        <app-calender
+          (selectADate)="selectADate($event)"
+          [activeDates]="availableDatesObject"
+        ></app-calender>
+      </div>
+      <div class="time-interval">
+        <app-time-cards *ngIf="availableTimeRange"
+                        [visitDuration]="doctor?.visitDurationInMin"
+                        (onConfirmTime)="onSelectConfirmTime($event)"
+                        [timeRange]="availableTimeRange"></app-time-cards>
+        <p *ngIf="!availableTimeRange" class="text-center">Please select a date to see available times.</p>
+      </div>
+    </main>
+  </div>
+</section>
+
+<ng-template #loadMore>
+  <app-load-more></app-load-more>
+</ng-template>
+
+<ng-template [ngTemplateOutlet]="userBookingInfo"></ng-template>
+
+<!-- Booking Modal -->
+<ng-template #userBookingInfo>
+  <div class="c-modal" #userBookingInfoRef>
+    <div class="modal-dialog xl-dialog ">
+      <div class="user-booking-info-modal">
+        <!-- Appointment booking form -->
+        <app-booking-info-form
+          *ngIf="!this.bookingAppointmentData"
+          (onClosed)="onClosed()"
+          (onSubmitBookingAppointment)="confirmBookingAppointment($event)"
+        ></app-booking-info-form>
+        <!-- After booking Success message -->
+        <app-booking-success-message
+          *ngIf="!!this.bookingAppointmentData"
+          [bookingInfo]="this.bookingAppointmentData"
+        ></app-booking-success-message>
+      </div>
+    </div>
+    <div *ngIf="!this.bookingAppointmentData" (click)="onClosed()" class="back-dore"></div>
+    <div *ngIf="!!this.bookingAppointmentData" class="back-dore"></div>
+  </div>
+</ng-template>
