@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Doctor } from "@pages/home/models/doctor";
+import { DoctorService } from "@pages/home/services/doctor.service";
 
 @Component({
   selector: 'app-doctors',
@@ -8,93 +9,20 @@ import { Doctor } from "@pages/home/models/doctor";
 })
 export class DoctorsComponent implements OnInit {
 
-  doctors: Doctor[] = [
-    {
-      id: '1',
-      name: "Dr. John Doe",
-      org: "Kings London Hospital",
-      speciality: "BDS, MDS - Oral Maxillofacial Surgery",
-      availabilities: {
-        sun: "10:00 AM - 06:00 PM",
-        mon: "10:00 AM - 06:00 PM",
-        wed: "06:00 PM - 09:00 PM",
-        thu: "06:00 PM - 09:00 PM"
-      },
-      visitDurationInMin: 15
-    },
-    {
-      id: '2',
-      name: "Dr. Mary Ellis",
-      org: "ABC Hospital",
-      speciality: "BDS, MDS - Oral Maxillofacial Surgery",
-      availabilities: {
-        sat: "06:00 PM - 09:00 PM",
-        sun: "10:00 AM - 06:00 PM",
-        wed: "06:00 PM - 09:00 PM"
-      },
-      visitDurationInMin: 15
-    },
-    {
-      id: '3',
-      name: "Dr. John Doe 2",
-      org: "Kings London Hospital",
-      speciality: "BDS, MDS - Oral Maxillofacial Surgery",
-      availabilities: {
-        sun: "10:00 AM - 06:00 PM",
-        wed: "06:00 PM - 09:00 PM"
-      },
-      visitDurationInMin: 15
-    },
-    {
-      id: '4',
-      name: "Dr. Mary Ellis 2",
-      org: "ABC Hospital",
-      speciality: "BDS, MDS - Oral Maxillofacial Surgery",
-      availabilities: {
-        sat: "10:00 AM - 06:00 PM",
-        sun: "10:00 AM - 06:00 PM",
-        wed: "06:00 PM - 09:00 PM"
-      },
-      visitDurationInMin: 15
-    },
-    {
-      id: '5',
-      name: "Dr. Mary Ellis 059",
-      org: "ABC Hospital",
-      speciality: "BDS, MDS - Oral Maxillofacial Surgery",
-      availabilities: {
-        sat: "06:00 PM - 09:00 PM",
-        sun: "10:00 AM - 06:00 PM",
-        wed: "06:00 PM - 09:00 PM"
-      },
-      visitDurationInMin: 15
-    },
-    {
-      id: '6',
-      name: "Dr. John Doe 25",
-      org: "Kings London Hospital",
-      speciality: "BDS, MDS - Oral Maxillofacial Surgery",
-      availabilities: {
-        sun: "10:00 AM - 06:00 PM",
-        wed: "06:00 PM - 09:00 PM"
-      },
-      visitDurationInMin: 15
-    },
-    {
-      id: '7',
-      name: "Dr. Mary Ellis 26",
-      org: "ABC Hospital",
-      speciality: "BDS, MDS - Oral Maxillofacial Surgery",
-      availabilities: {
-        sat: "10:00 AM - 06:00 PM",
-        sun: "10:00 AM - 06:00 PM",
-        wed: "06:00 PM - 09:00 PM"
-      },
-      visitDurationInMin: 15
-    }
-  ];
+  isLoading: boolean = true;
+  doctors: Doctor[] | undefined;
 
-  constructor() {
+  constructor(private _doctorService: DoctorService) {
+    this._doctorService
+      .getDoctors().subscribe(
+      (doctors: Doctor[]) => {
+        this.doctors = doctors;
+        this.isLoading = false;
+      },
+      (error) => {
+        this.isLoading = false;
+        console.log(error);
+      });
   }
 
   ngOnInit(): void {

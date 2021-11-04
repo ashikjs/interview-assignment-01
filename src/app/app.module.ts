@@ -1,23 +1,25 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from "@angular/common/http";
 
 // @Modules
 import { AppRoutingModule } from './app-routing.module';
 import { HttpInterceptorModule } from "@core/http-interceptor/http-interceptor.module";
+import { HeaderModule } from "@shared/components/header/header.module";
 
 // @Component
 import { AppComponent } from './app.component';
-import { HeaderComponent } from '@shared/components/header/header.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HeaderComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     HttpInterceptorModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HeaderModule
   ],
   providers: [],
   bootstrap: [AppComponent]

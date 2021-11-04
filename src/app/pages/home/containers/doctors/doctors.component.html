@@ -1,4 +1,4 @@
-<section>
+<section *ngIf="!!doctors; else loadMore">
   <div class="container">
     <h2>Doctors</h2>
     <div class="row">
@@ -9,3 +9,7 @@
     </div>
   </div>
 </section>
+
+<ng-template #loadMore>
+  <app-load-more></app-load-more>
+</ng-template>
