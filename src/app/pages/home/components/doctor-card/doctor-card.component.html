@@ -1,6 +1,6 @@
 <article *ngIf="doctor" class="doctor-card">
   <div class="doctor-img">
-    <img [src]="'/assets/images/doctors/' + doctor.id + '.jpg'" alt="doctor: ashik">
+    <img [src]="'/assets/images/doctors/' + doctor.id + '.jpg'" [alt]="doctor.name">
   </div>
   <div class="doctor-details">
     <h3 class="name">{{ doctor.name }}</h3>
@@ -20,6 +20,7 @@
       </li>
     </ul>
 
-    <a [routerLink]="'booking-details/' + doctor.id" class="book-btn">Book Now</a>
+    <a [routerLink]="'booking-details/' + doctor.id"
+       [state]="doctor" class="book-btn">Book Now</a>
   </div>
 </article>

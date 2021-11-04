@@ -2,20 +2,23 @@
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <app-selected-doctor-card></app-selected-doctor-card>
+        <app-selected-doctor-card [doctor]="doctor"></app-selected-doctor-card>
       </div>
     </div>
     <main>
-        <div class="calender-wrap">
-          <app-calender
-            (selectADate)="selectADate($event)"
-            [activeDates]="availableDatesObject"
-          ></app-calender>
-        </div>
-        <div class="time-interval">
-          <app-time-cards *ngIf="availableTimeRange" [timeRange]="availableTimeRange"></app-time-cards>
-          <p *ngIf="!availableTimeRange" class="text-center">Please select a date to see available times.</p>
-        </div>
+      <div class="calender-wrap">
+        <app-calender
+          (selectADate)="selectADate($event)"
+          [activeDates]="availableDatesObject"
+        ></app-calender>
+      </div>
+      <div class="time-interval">
+        <app-time-cards *ngIf="availableTimeRange"
+                        (onConfirmTime)="onSelectConfirmTime($event)"
+                        [timeRange]="availableTimeRange"
+                        [visitDuration]="doctor?.visitDurationInMin"></app-time-cards>
+        <p *ngIf="!availableTimeRange" class="text-center">Please select a date to see available times.</p>
+      </div>
     </main>
 
   </div>

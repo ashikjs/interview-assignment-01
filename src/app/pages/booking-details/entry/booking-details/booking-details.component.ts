@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
 import * as moment from "moment";
 import * as _ from "lodash";
 
@@ -16,31 +17,19 @@ import { AvailableDateObject } from "@pages/booking-details/models/available-dat
 })
 export class BookingDetailsComponent implements OnInit {
 
-  doctor: Doctor | undefined;
+  doctor: Doctor | undefined | any;
   availableDatesObject: CalendarDate[] = [];
   availableDates: AvailableDateObject[] = [];
   todayDate: moment.Moment = moment().startOf('day');
   maxBookingDate: number = 120;
   availableTimeRange: IntervalsObject | undefined;
 
-  constructor() {
+  constructor(private router: Router) {
+    this.doctor = this.router.getCurrentNavigation()?.extras.state;
   }
 
   ngOnInit(): void {
 
-    this.doctor = {
-      id: '1',
-      name: "Dr. John Doe",
-      org: "Kings London Hospital",
-      speciality: "BDS, MDS - Oral Maxillofacial Surgery",
-      availabilities: {
-        sun: "10:00 AM - 06:00 PM",
-        mon: "09:00 AM - 06:00 PM",
-        wed: "07:00 PM - 05:00 PM",
-        thu: "06:00 PM - 09:00 PM"
-      },
-      visitDurationInMin: 15
-    };
     this.availableDates = this.generateAvailableDates(this.doctor?.availabilities)
     console.log(this.availableDates);
     this.availableDatesObject = this.formatCalendarDate(this.availableDates);
@@ -100,5 +89,9 @@ export class BookingDetailsComponent implements OnInit {
       start: moment(cDate + ' ' + times[0], ["MM-DD-YYYY h:mm A"]),
       end: moment(cDate + ' ' + times[1], ["MM-DD-YYYY h:mm A"])
     };
+  }
+
+  onSelectConfirmTime(interval: any) {
+    console.log(interval);
   }
 }
