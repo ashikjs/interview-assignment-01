@@ -9,6 +9,7 @@
   padding: 40px 0;
   background: #fff;
   font-family: 'Arvo', serif;
+  height: calc(100vh - 59px);
 
   main {
     max-width: 540px;
@@ -41,6 +42,7 @@
     background: #39ac31;
     margin: 20px 0;
     display: inline-block;
+    text-decoration: none;
   }
 
   .contant_box_404 {
