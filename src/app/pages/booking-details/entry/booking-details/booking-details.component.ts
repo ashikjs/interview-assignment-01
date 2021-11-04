@@ -5,6 +5,8 @@ import * as _ from "lodash";
 // Models
 import { CalendarDate } from "@pages/booking-details/models/calendarDate";
 import { Doctor } from "@pages/home/models/doctor";
+import { IntervalsObject } from "@pages/booking-details/models/intervalsObject";
+import { AvailableDateObject } from "@pages/booking-details/models/available-date.object";
 
 
 @Component({
@@ -16,10 +18,10 @@ export class BookingDetailsComponent implements OnInit {
 
   doctor: Doctor | undefined;
   availableDatesObject: CalendarDate[] = [];
-  availableDates: string[] = [];
+  availableDates: AvailableDateObject[] = [];
   todayDate: moment.Moment = moment().startOf('day');
   maxBookingDate: number = 120;
-  availableTimeRange: string | undefined;
+  availableTimeRange: IntervalsObject | undefined;
 
   constructor() {
   }
@@ -39,8 +41,8 @@ export class BookingDetailsComponent implements OnInit {
       },
       visitDurationInMin: 15
     };
-    this.availableDates = this.generateAvailableDates(Object.keys(this.doctor?.availabilities))
-
+    this.availableDates = this.generateAvailableDates(this.doctor?.availabilities)
+    console.log(this.availableDates);
     this.availableDatesObject = this.formatCalendarDate(this.availableDates);
   }
 
@@ -48,43 +50,55 @@ export class BookingDetailsComponent implements OnInit {
   /*** public Method                  ***/
   //*************************************//
   public selectADate(data: any) {
-    const weekDay = moment(data.mDate)?.format('ddd')?.toLocaleLowerCase();
-    this.availableTimeRange = this.doctor?.availabilities[weekDay];
-    console.log(this.availableTimeRange);
-
+    this.availableTimeRange = data?.intervals;
   }
 
   //**************************************//
   /*** private Method                  ***/
   //*************************************//
 
-  private formatCalendarDate(dates: any[]): CalendarDate[] {
+  private formatCalendarDate(dates: AvailableDateObject[]): CalendarDate[] {
     return dates?.map(date => {
       return {
         disable: false,
         today: false,
         selected: true,
-        mDate: moment(date),
-        intervals: []
+        mDate: moment(new Date(date.date)),
+        intervals: this.generateIntervals(date)
       };
     });
   }
 
-  private generateAvailableDates(availabilities?: string[]): string[] {
-    if (!!availabilities && availabilities?.length > 0) {
+  private generateAvailableDates(availabilities?: { [key: string]: string }): AvailableDateObject[] {
+    if (!!availabilities) {
       return this.fillDates(this.todayDate, this.maxBookingDate, availabilities)
     }
     return []
   }
 
-  private fillDates(currentDate: moment.Moment, maxBookingDates: number, availableWeekDays: string[]): string[] {
+  private fillDates(currentDate: moment.Moment, maxBookingDates: number, availableWeekDays: { [key: string]: string }): AvailableDateObject[] {
     const start = currentDate.date();
     return _.range(start, start + maxBookingDates)
       .map((day: number): any => {
         const date: moment.Moment = moment(currentDate)?.date(day);
-        const isAvailable = availableWeekDays?.includes(date?.format('ddd').toLocaleLowerCase());
-        return isAvailable ? date.format("MM-DD-YYYY") : '';
+        const weekDay = date?.format('ddd').toLocaleLowerCase();
+        if (availableWeekDays.hasOwnProperty(weekDay)) {
+          return {
+            date: date.format("MM-DD-YYYY"),
+            availability: availableWeekDays[weekDay]
+          }
+        }
+        return '';
       }).filter(Boolean);
   }
 
+  private generateIntervals(date: AvailableDateObject): IntervalsObject {
+    const times = date?.availability?.split(' - ');
+    const cDate = moment(new Date(date.date)).format("MM-DD-YYYY");
+
+    return {
+      start: moment(cDate + ' ' + times[0], ["MM-DD-YYYY h:mm A"]),
+      end: moment(cDate + ' ' + times[1], ["MM-DD-YYYY h:mm A"])
+    };
+  }
 }

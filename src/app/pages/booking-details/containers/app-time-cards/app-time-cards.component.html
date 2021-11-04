@@ -1,0 +1,13 @@
+<ng-container *ngIf="!!availableTimes">
+  <div class="available-times" id="timeSlots">
+    <div class="row">
+      <div *ngFor="let time of availableTimes" class="col-12 col-sm-6 col-lg-12 col-xl-6">
+        <p *ngIf="availableTimes?.length == 0">No appointments</p>
+        <div class="d-block time-slot">
+          <span (click)="activeClass($event)" class="time">{{ time }}</span>
+          <span (click)="timeConfirm($event, time)" class="confirm">Confirm</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>

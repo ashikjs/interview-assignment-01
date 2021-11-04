@@ -4,13 +4,15 @@ import { BookingDetailsComponent } from './entry/booking-details/booking-details
 import { SelectedDoctorCardComponent } from './components/selected-doctor-card/selected-doctor-card.component';
 import { RouterModule } from "@angular/router";
 import { CalenderComponent } from "@pages/booking-details/containers/calender/calender.component";
+import { AppTimeCardsComponent } from './containers/app-time-cards/app-time-cards.component';
 
 
 @NgModule({
     declarations: [
         BookingDetailsComponent,
         SelectedDoctorCardComponent,
-        CalenderComponent
+        CalenderComponent,
+        AppTimeCardsComponent
     ],
   imports: [
     CommonModule,

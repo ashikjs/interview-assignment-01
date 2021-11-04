@@ -1,4 +1,6 @@
+import * as moment from "moment";
+
 export interface IntervalsObject {
-  start: string;
-  end: string;
+  start: moment.Moment;
+  end: moment.Moment;
 }

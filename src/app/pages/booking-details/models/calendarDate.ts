@@ -7,5 +7,5 @@ export interface CalendarDate {
   active?: boolean;
   today?: boolean;
   mDate?: moment.Moment;
-  intervals: IntervalsObject[];
+  intervals: IntervalsObject;
 }

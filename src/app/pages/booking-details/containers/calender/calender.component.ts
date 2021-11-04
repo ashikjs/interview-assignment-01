@@ -4,7 +4,6 @@ import * as moment from 'moment';
 import * as _ from 'lodash';
 
 import { CalendarDate } from "@pages/booking-details/models/calendarDate";
-import { IntervalsObject } from "@pages/booking-details/models/intervalsObject";
 
 @Component({
   selector: 'app-calender',
@@ -17,7 +16,6 @@ export class CalenderComponent implements OnInit, OnChanges {
   weeks: CalendarDate[][] = [];
   sortedDates: CalendarDate[] = [];
 
-  scheduleInterval: IntervalsObject[] = [];
   lastAvailableDate: any;
   todayDate: moment.Moment = moment().startOf('day');
   firstAvailableDate: any;
@@ -90,8 +88,6 @@ export class CalenderComponent implements OnInit, OnChanges {
   }
 
   onSelectDate(date: CalendarDate, event: any): void {
-    this.scheduleInterval = date.intervals;
-
     const els: any = document.querySelectorAll('.week-date.selected');
     for (const el of els) {
       el.classList.remove('selected');
