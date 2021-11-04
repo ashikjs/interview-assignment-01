@@ -1,9 +1,7 @@
 # Project install and run
 1. `npm install`
-2. Add domain to `.host` file like: 192.101.0.8(Network IP-ipv4) appointment.squarehealth.com
-3. `npm start`
-4. Project will be run by `http://appointment.squarehealth.com:4300/` 
-
+2. `npm start`
+3. Project will be run on `http://localhost:4200/` 
 
 # ShTestAssignment
 
