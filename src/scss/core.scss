@@ -1,6 +1,13 @@
+
 /*----Import Default Scss---*/
 @import "./default/global";
 
+/*---- Abstracts Scss ---*/
+@import "./abstracts/functions";
+@import "./abstracts/mixins";
+@import "./abstracts/variables";
+
 /*---Import Partial Scss--*/
-@import "./partials/button";
+@import "./partials/c_modal";
 @import "./partials/utilities";
+@import "./partials/form";

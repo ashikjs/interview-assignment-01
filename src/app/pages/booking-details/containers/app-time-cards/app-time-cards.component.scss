@@ -1,6 +1,4 @@
-
-$primary-color: #094b66;
-$secondary-color: #2cbbb5;
+@import 'abstracts/variables';
 
 @media only screen and (max-width: 991px) {
   .available-times {
@@ -23,7 +21,7 @@ $secondary-color: #2cbbb5;
     display: block;
     padding: 2px;
 
-    span {
+    button {
       width: 100%;
       padding: 10px 0;
       display: inline-block;
@@ -38,6 +36,8 @@ $secondary-color: #2cbbb5;
       -webkit-transition: all 0.5s;
       transition: all 0.5s;
       border: 1px solid #d9d9d9;
+      outline: 0;
+      box-shadow: none;
 
       &.confirm {
         width: calc(50% - 4px);
@@ -47,7 +47,7 @@ $secondary-color: #2cbbb5;
     }
 
     &.confirmed.active {
-      span {
+      button {
         width: 100%;
 
         &.confirm {
@@ -58,27 +58,30 @@ $secondary-color: #2cbbb5;
   }
 }
 
-.available-times .time-slot:hover span.time {
-  border: 1px solid $secondary-color;
-  padding: 10px 0;
-}
+.available-times .time-slot {
+  &:hover button.time {
+    border: 1px solid $secondary-color;
+    padding: 10px 0;
+  }
 
-.available-times .time-slot.active span {
-  width: calc(50% - 2px);
-  font-weight: 400;
-}
+  &.active button {
+    width: calc(50% - 2px);
+    font-weight: 400;
 
-.available-times .time-slot.active span.time {
-  border: 1px solid $primary-color;
-  background-color: $primary-color;
-  color: #fff;
-}
+    &.time {
+      border: 1px solid $primary-color;
+      background-color: $primary-color;
+      color: #fff;
+    }
 
-.available-times .time-slot.active span.confirm {
-  transform: translateX(0px);
-  margin-left: 4px;
-  display: inline-block;
-  color: #fff;
-  background-color: $secondary-color;
-  border: 1px solid $secondary-color;
+    &.confirm {
+      transform: translateX(0px);
+      margin-left: 4px;
+      display: inline-block;
+      color: #fff;
+      background-color: $secondary-color;
+      border: 1px solid $secondary-color;
+    }
+  }
+
 }

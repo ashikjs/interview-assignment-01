@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from "@angular/router";
 import * as moment from "moment";
 import * as _ from "lodash";
@@ -24,14 +24,29 @@ export class BookingDetailsComponent implements OnInit {
   maxBookingDate: number = 120;
   availableTimeRange: IntervalsObject | undefined;
 
+  @ViewChild('userBookingInfoRef')
+  userBookingInfoRef: ElementRef | undefined;
+
   constructor(private router: Router) {
     this.doctor = this.router.getCurrentNavigation()?.extras.state;
+    if (!this.doctor) {
+      this.doctor = {
+        id: '2',
+        name: "Dr. Mary Ellis",
+        org: "ABC Hospital",
+        speciality: "BDS, MDS - Oral Maxillofacial Surgery",
+        availabilities: {
+          sat: "06:00 PM - 09:00 PM",
+          sun: "10:00 AM - 06:00 PM",
+          wed: "06:00 PM - 09:00 PM"
+        },
+        visitDurationInMin: 15
+      }
+    }
   }
 
   ngOnInit(): void {
-
     this.availableDates = this.generateAvailableDates(this.doctor?.availabilities)
-    console.log(this.availableDates);
     this.availableDatesObject = this.formatCalendarDate(this.availableDates);
   }
 
@@ -40,6 +55,19 @@ export class BookingDetailsComponent implements OnInit {
   //*************************************//
   public selectADate(data: any) {
     this.availableTimeRange = data?.intervals;
+  }
+
+  public onSelectConfirmTime(interval: any) {
+    console.log(interval);
+    this.userBookingInfoRef?.nativeElement.classList.add('show-modal');
+  }
+
+  public onClosed() {
+    this.userBookingInfoRef?.nativeElement.classList.remove('show-modal');
+  }
+
+  public confirmBookingAppointment(data: any) {
+    console.log(data);
   }
 
   //**************************************//
@@ -91,7 +119,4 @@ export class BookingDetailsComponent implements OnInit {
     };
   }
 
-  onSelectConfirmTime(interval: any) {
-    console.log(interval);
-  }
 }

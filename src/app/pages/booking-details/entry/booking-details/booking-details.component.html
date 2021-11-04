@@ -20,6 +20,22 @@
         <p *ngIf="!availableTimeRange" class="text-center">Please select a date to see available times.</p>
       </div>
     </main>
-
   </div>
 </section>
+
+<ng-template [ngTemplateOutlet]="userBookingInfo"></ng-template>
+
+<!-- Booking Modal -->
+<ng-template #userBookingInfo>
+  <div class="c-modal" #userBookingInfoRef>
+    <div class="modal-dialog xl-dialog ">
+      <div class="user-booking-info-modal">
+        <app-booking-info-form
+          (onClosed)="onClosed()"
+          (onSubmitBookingAppointment)="confirmBookingAppointment($event)"
+        ></app-booking-info-form>
+      </div>
+    </div>
+    <div (click)="onClosed()" class="back-dore"></div>
+  </div>
+</ng-template>

@@ -5,6 +5,8 @@ import { SelectedDoctorCardComponent } from './components/selected-doctor-card/s
 import { RouterModule } from "@angular/router";
 import { CalenderComponent } from "@pages/booking-details/containers/calender/calender.component";
 import { AppTimeCardsComponent } from './containers/app-time-cards/app-time-cards.component';
+import { ReactiveFormsModule } from "@angular/forms";
+import { BookingInfoFormComponent } from './containers/booking-info-form/booking-info-form.component';
 
 
 @NgModule({
@@ -12,7 +14,8 @@ import { AppTimeCardsComponent } from './containers/app-time-cards/app-time-card
         BookingDetailsComponent,
         SelectedDoctorCardComponent,
         CalenderComponent,
-        AppTimeCardsComponent
+        AppTimeCardsComponent,
+        BookingInfoFormComponent
     ],
   imports: [
     CommonModule,
@@ -22,6 +25,7 @@ import { AppTimeCardsComponent } from './containers/app-time-cards/app-time-card
         component: BookingDetailsComponent
       }
     ]),
+    ReactiveFormsModule,
   ]
 })
 export class BookingDetailsModule { }
