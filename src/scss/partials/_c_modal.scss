@@ -23,6 +23,8 @@
     right: 0;
     margin: auto;
     z-index: 99992;
+    max-height: calc(100% - 10px);
+    overflow-y: auto;
 
     &.xl-dialog {
       max-width: 650px;

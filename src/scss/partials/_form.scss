@@ -117,6 +117,10 @@ form {
       outline: 0;
       box-shadow: none;
     }
+
+    @media screen  and (max-width: 460px) {
+      width: 105px;
+    }
   }
 
   button.submit-btn {
