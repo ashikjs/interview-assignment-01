@@ -30,8 +30,6 @@ export class AppTimeCardsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.visitDuration)
-      this.incrementTime = this.visitDuration * this.incrementTime;
   }
 
   public activeClass(event: any) {
@@ -50,17 +48,22 @@ export class AppTimeCardsComponent implements OnInit {
   }
 
   private generateAvailableTimes(interval: IntervalsObject) {
+    let timeIncrement: number = 0;
+    if (!!this.visitDuration)
+      timeIncrement = this.visitDuration * this.incrementTime;
+
     let meetingStartTime = interval.start.valueOf();
-    let meetingEndTime = interval.start.valueOf() + this.incrementTime;
+    let meetingEndTime = interval.start.valueOf() + timeIncrement;
     const maximumMeetingTimeTime = interval.end.valueOf();
+
     while (meetingEndTime <= maximumMeetingTimeTime) {
       const time: IntervalsObjectByDateType = {
         start: new Date(meetingStartTime),
         end: new Date(meetingEndTime)
       };
       this.availableTimes.push(time);
-      meetingStartTime = meetingStartTime + this.incrementTime;
-      meetingEndTime = meetingEndTime + this.incrementTime;
+      meetingStartTime = meetingStartTime + timeIncrement;
+      meetingEndTime = meetingEndTime + timeIncrement;
     }
   }
 
