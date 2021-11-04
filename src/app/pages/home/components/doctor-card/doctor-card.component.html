@@ -1,6 +1,6 @@
 <article *ngIf="doctor" class="doctor-card">
   <div class="doctor-img">
-    <img [src]="'/assets/images/doctors/' + doctor.id + '.jpg'" [alt]="doctor.name">
+    <img [src]="'assets/images/doctors/' + doctor.id + '.jpg'" [alt]="doctor.name">
   </div>
   <div class="doctor-details">
     <h3 class="name">{{ doctor.name }}</h3>
@@ -8,13 +8,13 @@
     <ul>
       <li>
         <div class="icon">
-          <img src="/assets/images/icons/pharmacy.png" alt="">
+          <img src="assets/images/icons/pharmacy.png" alt="">
         </div>
         <span>{{ doctor.org }}</span>
       </li>
       <li>
         <div class="icon clock">
-          <img src="/assets/images/icons/clock.png" alt="">
+          <img src="assets/images/icons/clock.png" alt="">
         </div>
         <span>Available on {{ availabilities?.join(', ') }}.</span>
       </li>
